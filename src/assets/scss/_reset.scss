@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: var(--text-font);
+}
+
+div,
+img,
+ol,
+ul,
+input {
+  padding: 0;
+  margin: 0;
+}
+
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+input,
+button {
+  border: none;
+  outline: transparent;
+}

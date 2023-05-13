@@ -3,10 +3,17 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ng serve -o",
+    "host": "ng serve -o --host 0.0.0.0 --poll 250",
+    "docker-start": "docker-compose up --build",
+    "build": "ng build --optimization=true --vendor-chunk=false --source-map=false --build-optimizer --configuration production",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "pre-commit": "lint-staged",
+    "commit": "git add . && npx cz",
+    "release": "standard-version",
+    "prepare": "husky install",
+    "lint": "tsc --noEmit && eslint . --ext js,ts --quiet --fix"
   },
   "private": true,
   "dependencies": {
@@ -33,6 +40,39 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
-    "typescript": "~5.0.2"
+    "typescript": "~5.0.2",
+    "@angular-eslint/builder": "16.0.1",
+    "@angular-eslint/eslint-plugin": "16.0.1",
+    "@angular-eslint/eslint-plugin-template": "16.0.1",
+    "@angular-eslint/schematics": "16.0.1",
+    "@angular-eslint/template-parser": "16.0.1",
+    "@commitlint/cli": "^17.6.3",
+    "@commitlint/config-angular": "^17.6.3",
+    "@commitlint/config-conventional": "^17.6.3",
+    "@typescript-eslint/eslint-plugin": "^5.59.2",
+    "@typescript-eslint/parser": "5.59.2",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.39.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-standard-with-typescript": "^34.0.1",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
+    "prettier": "^2.8.8",
+    "standard-version": "^9.5.0"
+  },
+  "lint-staged": {
+    "**/*.{js,ts}": [
+      "npm run lint"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
