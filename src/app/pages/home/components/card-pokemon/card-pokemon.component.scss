@@ -1,0 +1,41 @@
+@import "../../../../../assets/scss/responsive", "../../../../../assets/scss/mixins";
+
+.card-pokemon {
+  background-color: $light-color;
+  border-radius: 2px;
+  padding: 16px 13px 16px 16px;
+  @include size(100%, 100%);
+  color: $secondary-color;
+  text-transform: capitalize;
+  display: grid;
+  gap: 22px;
+
+  @media (max-width: $phone) {
+    padding: 16px 24px;
+  }
+
+  .pokemon-image {
+    max-width: 124px;
+    max-height: 122px;
+    justify-self: center;
+
+    @media (max-width: $phone) {
+      max-width: 171px;
+    }
+  }
+
+  .pokemon-info,
+  .detail {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .pokemon-name,
+  .detail-name {
+    font-weight: 700;
+  }
+
+  .detail-info {
+    font-weight: 600;
+  }
+}
