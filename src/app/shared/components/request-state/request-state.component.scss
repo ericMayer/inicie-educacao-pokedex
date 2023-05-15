@@ -1,0 +1,17 @@
+.state-container {
+  display: grid;
+  gap: 12px;
+  justify-content: center;
+
+  .animation {
+    width: 100%;
+    max-height: 300px;
+  }
+
+  .request-info {
+    text-align: center;
+    display: grid;
+    gap: 8px;
+    color: var(--secondary-color);
+  }
+}

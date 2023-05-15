@@ -1,0 +1,91 @@
+<main class="home" #home infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
+  [infiniteScrollContainer]="home" (scrolled)="onScroll()">
+  <header class="header">
+
+    <img class="logo header-margin" src="assets/images/logo-inicie-educacao.svg" alt="Logo da Inicie Educação">
+
+    <div class="header-top header-margin">
+      <div class="header-title">
+        <h1 class="title">Explore o mundo dos <b>Pokémons</b></h1>
+
+        <p class="subtitle">Descubra todas as espécies de Pokémons</p>
+
+        <div class="search">
+          <input type="text" class="small-font" [formControl]="search" (keydown)="onKeyDown($event)">
+
+          <button class="subtitle-font" (click)="searchPokemonByName()">Buscar</button>
+        </div>
+      </div>
+
+      <div class="header-pokemons-position">
+        <div class="header-pokemons">
+          <img class="header-pokemon" *ngFor="let pokemon of headerPokemons" [src]="pokemon?.value"
+            [alt]="pokemon?.key">
+
+          <ng-container *ngFor="let background of [0, 1]; index as i">
+            <div class="background-square" [class]="'background-square-' + (i + 1)"></div>
+          </ng-container>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="header-bottom">
+      <p>Pokédex</p>
+
+      <div class="slide-buttons" *ngIf="filteredPokemonsList?.length">
+        <button class="prev" (click)="actionSlide('slidePrev')">
+          <img src="assets/icons/prev.svg" alt="Ícone de slide anterior">
+        </button>
+
+        <button class="next" (click)="actionSlide('slideNext')">
+          <img src="assets/icons/next.svg" alt="Ícone de próximo">
+        </button>
+      </div>
+
+      <div class="background-square background-square-3"></div>
+    </div>
+  </header>
+
+  <div class="slides">
+
+    <swiper-container class="cards-pokemons" #swiperContainerListOne slides-per-view="auto"
+      [class.display-none]="isMobile">
+
+      <ng-container *ngTemplateOutlet="cardPokemon; context: { pokemonsList: pokemonsList?.pokemonsListOne }">
+      </ng-container>
+
+    </swiper-container>
+
+    <swiper-container class="cards-pokemons" #swiperContainerListTwo slides-per-view="auto"
+      [class.display-none]="isMobile">
+
+      <ng-container *ngTemplateOutlet="cardPokemon; context: { pokemonsList: pokemonsList?.pokemonsListTwo }">
+      </ng-container>
+
+    </swiper-container>
+
+    <div class="cards-pokemons" *ngIf="showPokemonsMobile()">
+      <div class="slide" *ngFor="let pokemon of pokemonsList?.pokemonsList">
+        <app-card-pokemon [pokemon]="pokemon"></app-card-pokemon>
+      </div>
+    </div>
+
+    <app-request-state class="request-state" *ngIf="showRequestState()"
+      [requestState]="requestState"></app-request-state>
+  </div>
+
+</main>
+
+<ng-template #cardPokemon let-pokemonsList="pokemonsList">
+
+  <ng-container *ngIf="showSwiper()">
+
+    <swiper-slide class="slide" *ngFor="let pokemon of pokemonsList">
+      <app-card-pokemon [pokemon]="pokemon"></app-card-pokemon>
+    </swiper-slide>
+
+  </ng-container>
+
+</ng-template>

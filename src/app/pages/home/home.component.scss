@@ -1,0 +1,325 @@
+@import "../../../assets/scss/responsive", "../../../assets/scss/mixins";
+
+.display-none {
+  display: none !important;
+}
+
+.home {
+  background-color: $background-color;
+  @include size(100%, 100%);
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  .background-square {
+    background: url("../../../assets/images/background-square.svg") no-repeat center center;
+    background-size: cover;
+    position: absolute;
+    @include size(135px, 137px);
+
+    @media (max-width: $phone) {
+      @include size(83px, 80px);
+    }
+  }
+
+  .background-square-1 {
+    top: -23px;
+    left: -33px;
+
+    @media (max-width: $phone) {
+      top: 5px;
+    }
+  }
+
+  .background-square-2 {
+    top: 228px;
+    right: 120px;
+
+    @media (max-width: $phone) {
+      top: 135px;
+      right: 60px;
+    }
+  }
+
+  .background-square-3 {
+    bottom: -90px;
+    left: -115px;
+
+    @media (max-width: $phone) {
+      display: none;
+    }
+  }
+
+  .header {
+    background: var(--background-linear);
+    position: relative;
+
+    @media (max-width: $phone) {
+      background: $background-color;
+    }
+  }
+
+  .header-margin {
+    margin-right: 74px;
+    margin-left: 106px;
+
+    @media (max-width: $tablet) {
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+
+  .logo {
+    @include size(110px, 138px);
+    margin-top: 14px;
+
+    @media (max-width: $tablet) {
+      margin-top: 0;
+      margin-left: 105px;
+    }
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: -30px;
+
+    @media (max-width: $desktop) {
+      display: grid;
+      justify-content: start;
+    }
+
+    .header-title {
+      margin-left: 8px;
+      color: $secondary-color;
+
+      @media (max-width: $tablet) {
+        margin: 0 32px 70px 32px;
+      }
+
+      @media (max-width: 375px) {
+        margin-right: 16px;
+        margin-left: 16px;
+      }
+    }
+
+    .title {
+      @include font(55px, 60px, 700);
+      max-width: 450px;
+      margin-bottom: 24px;
+
+      @media (max-width: $phone) {
+        @include font(35px, 39px, 700);
+        max-width: 286px;
+        margin-bottom: 10px;
+      }
+    }
+
+    .title b {
+      color: $primary-color;
+    }
+
+    .subtitle {
+      @include font(25px, 30px, 400);
+      margin-bottom: 31px;
+
+      @media (max-width: $phone) {
+        @include font(16px, 30px, 400);
+        margin-bottom: 10px;
+      }
+    }
+
+    .search {
+      height: 44px;
+      display: flex;
+
+      input {
+        @include size(333px, 100%);
+        padding: 8px 16px;
+        background: $light-color;
+        border: 1px solid #f4f4f4;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        border-radius: 5px 0 0 5px;
+        color: $secondary-color;
+
+        @media (max-width: $phone) {
+          width: calc(100% - 108px);
+        }
+      }
+
+      button {
+        cursor: pointer;
+        @include size(108px, 100%);
+        background-color: $primary-color;
+        box-shadow: 0 4px 15px $primary-color;
+        border-radius: 0 5px 5px 0;
+        font-family: $text-font;
+        font-weight: 700;
+        color: $light-color;
+      }
+    }
+
+    .header-pokemons-position {
+      position: absolute;
+      top: 38px;
+      right: 74px;
+
+      @media (max-width: $desktop) {
+        position: initial;
+        order: -1;
+      }
+
+      @media (max-width: $tablet) {
+        margin: 0 20px 34px 20px;
+      }
+
+      @media (max-width: $phone) {
+        margin-top: -20px;
+        margin-bottom: 14px;
+      }
+    }
+
+    .header-pokemons {
+      display: flex;
+      position: relative;
+
+      :nth-child(3) {
+        margin-left: 8px;
+      }
+
+      @media (max-width: $phone) {
+        &:nth-child(3) {
+          margin-left: 6px;
+        }
+      }
+    }
+
+    .header-pokemon {
+      @include size(162px, 302px);
+      z-index: 2;
+
+      @media (max-width: $phone) {
+        @include size(100px, 176px);
+      }
+
+      &:first-child {
+        margin-top: 15px;
+      }
+
+      &:nth-child(even) {
+        margin-top: 83px;
+      }
+    }
+  }
+
+  .header-bottom {
+    margin: 38px 33px 0 58px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    position: relative;
+
+    @media (max-width: $phone) {
+      margin: 0 34px;
+      justify-content: center;
+    }
+
+    p {
+      color: $secondary-color;
+      @include font(30px, 30px, 700);
+
+      @media (max-width: $phone) {
+        @include font(22px, 30px, 700);
+        text-align: center;
+      }
+    }
+
+    .slide-buttons {
+      display: flex;
+      gap: 8px;
+
+      @media (max-width: $phone) {
+        display: none;
+      }
+
+      .prev,
+      .next {
+        background-color: $primary-color;
+        box-shadow: 0 15px 15px rgba(234, 104, 109, 0.1);
+        @include size(32px, 32px);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        &:disabled {
+          opacity: 0.4;
+          cursor: default;
+        }
+
+        img {
+          @include size(11px, 19px);
+        }
+      }
+
+      .prev {
+        padding: 7px 11px 6px 10px;
+      }
+
+      .next {
+        padding: 6px 10px 7px 11px;
+      }
+    }
+  }
+
+  .slides {
+    width: 100%;
+    display: grid;
+    gap: 23px;
+    padding: 31px 64px 31px 58px;
+
+    @media (max-width: $phone) {
+      padding: 17px 34px 17px 34px;
+      gap: 17px;
+      justify-content: center;
+    }
+
+    .request-state {
+      display: grid;
+      width: 100%;
+      justify-self: center;
+    }
+  }
+
+  .cards-pokemons {
+    width: 100%;
+    display: flex;
+    cursor: grab;
+    justify-self: start;
+
+    @media (max-width: $phone) {
+      display: grid;
+      grid-template-columns: minmax(260px, 306px);
+    }
+  }
+
+  .slide {
+    @include size(222px, 271px);
+    margin-right: 32px;
+
+    @media (max-width: $phone) {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 17px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
