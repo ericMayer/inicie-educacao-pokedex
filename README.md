@@ -74,4 +74,4 @@ Para gerar as versões do projeto está sendo seguido o padrão **Conventional C
 
 ## Para ajuda futura
 
-Para futura ajuda e dúvidas, consultar a documentação do [Angular](https://angular.io/), [Material](https://material.angular.io/), [RXJS](https://rxjs.dev/), [Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0/) e [Stack Overflow](https://stackoverflow.com/).
+Para futura ajuda e dúvidas, consultar a documentação do [Angular](https://angular.io/), [RXJS](https://rxjs.dev/), [Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0/) e [Stack Overflow](https://stackoverflow.com/).
