@@ -28,11 +28,17 @@
   .detail {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    gap: 8px;
   }
 
   .pokemon-name,
   .detail-name {
     font-weight: 700;
+  }
+
+  .pokemon-name {
+    @include ellipsis(1);
   }
 
   .detail-info {

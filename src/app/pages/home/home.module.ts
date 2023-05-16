@@ -8,6 +8,7 @@ import { HomeComponent } from './home.component';
 import { CardPokemonComponent } from './components/card-pokemon/card-pokemon.component';
 import { SharedModule } from '@shared/shared.module';
 import { CoreModule } from '@core/core.module';
+import { SkeletonLoadingModule } from '@shared/components/skeleton-loading/skeleton-loading.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CoreModule } from '@core/core.module';
     CoreModule,
     HomeRoutingModule,
     SharedModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    SkeletonLoadingModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

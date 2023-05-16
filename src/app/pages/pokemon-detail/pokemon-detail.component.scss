@@ -1,0 +1,331 @@
+@import "../../../assets/scss/mixins", "../../../assets//scss/responsive";
+
+.pokemon {
+  @include size(100%, 100%);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--background-linear);
+  color: $secondary-color;
+  padding-bottom: 77px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+
+  @media (max-width: $tablet) {
+    display: grid;
+    background: $background-color;
+    padding: 0 32px 32px 32px;
+    justify-content: start;
+  }
+
+  &.page-error {
+    flex-direction: column;
+    padding: 32px;
+    justify-content: flex-start;
+  }
+
+  .pokemon-info {
+    padding-left: 77px;
+    padding-top: 7px;
+
+    @media (max-width: $desktop) {
+      padding-left: 32px;
+    }
+
+    @media (max-width: $tablet) {
+      padding-top: 0px;
+      padding-left: 0;
+    }
+
+    .logo {
+      @include size(110px, 138px);
+      cursor: pointer;
+    }
+
+    .back {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-top: -40px;
+
+      @media (max-width: $phone) {
+        margin-bottom: 16px;
+      }
+    }
+
+    .back-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      gap: 4px;
+      height: 40px;
+      border-radius: 5px;
+      box-shadow: 0 4px 15px $primary-color;
+      background-color: $primary-color;
+      color: $light-color;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .pokemon-name {
+      @include font(35px, 48px, 700);
+      text-transform: capitalize;
+
+      @media (max-width: $phone) {
+        @include font(25px, 34px, 700);
+      }
+    }
+
+    .pokemon-category {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 10px;
+
+      .code,
+      .category {
+        display: flex;
+      }
+
+      .code {
+        gap: 7px;
+      }
+
+      .category {
+        gap: 17px;
+      }
+
+      .type {
+        padding-top: 5px;
+        padding-bottom: 7px;
+        color: $light-color;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 2px;
+        text-transform: capitalize;
+        min-width: 97px;
+        height: 30px;
+
+        .subtitle-font {
+          line-height: 22px;
+        }
+      }
+
+      @media (max-width: $phone) {
+        margin-top: 0;
+        display: grid;
+        gap: 4px;
+
+        .code {
+          gap: 17px;
+        }
+
+        p.subtitle-font {
+          @include font(18px, 25px, 400);
+        }
+      }
+    }
+
+    .description {
+      margin-top: 24px;
+      display: grid;
+      gap: 8px;
+
+      .subtitle-font {
+        font-weight: 700;
+      }
+
+      .small-font {
+        font-weight: 600;
+      }
+
+      @media (max-width: $phone) {
+        margin-top: 47px;
+      }
+    }
+
+    .pokemon-stat {
+      margin-top: 24px;
+
+      @media (max-width: $phone) {
+        margin-top: 44px;
+      }
+
+      .subtitle-font {
+        font-weight: 700;
+      }
+
+      .sheap {
+        margin-top: 11px;
+        margin-left: 7px;
+
+        @media (max-width: $phone) {
+          margin-left: 0;
+        }
+
+        .sheap-detail {
+          display: flex;
+          justify-content: space-between;
+          gap: 16px;
+          align-items: center;
+
+          .text-font {
+            font-weight: 600;
+          }
+        }
+      }
+
+      .chart {
+        margin-top: 28px;
+        display: grid;
+        gap: 16px;
+        position: relative;
+
+        .chart-bar {
+          display: flex;
+          gap: 14px;
+
+          &:last-child {
+            margin-top: 3px;
+          }
+        }
+
+        .small-font {
+          font-weight: 600;
+          width: 81px;
+        }
+
+        .bar {
+          background-color: $light-color;
+          border-radius: 2px;
+          @include size(203px, 21px);
+        }
+
+        .bar-color {
+          height: 100%;
+          border-radius: 2px;
+        }
+
+        @media (max-width: $phone) {
+          margin-top: 45px;
+
+          .bar {
+            background-color: #fbfdff;
+          }
+        }
+      }
+    }
+
+    .pokemon-image {
+      display: none;
+
+      @media (max-width: $tablet) {
+        display: flex;
+        justify-content: center;
+        margin-left: 30px;
+
+        .image {
+          filter: none;
+          border: 1px solid #eff4fa;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+
+  .pokemon-image {
+    padding-right: 147px;
+    padding-top: 86px;
+
+    @media (max-width: $desktop) {
+      padding-right: 32px;
+    }
+
+    @media (max-width: $tablet) {
+      display: none;
+      padding-top: 18px;
+      padding-right: 0;
+      justify-self: center;
+    }
+
+    .image {
+      @include size(376px, 396px);
+      border: 1px solid $light-color;
+      filter: drop-shadow(0px 15px 15px rgba(234, 104, 109, 0.1));
+      border-radius: 50%;
+
+      @media (max-width: $desktop) {
+        @include size(244px, 252px);
+      }
+    }
+  }
+
+  .background-square {
+    background: url("../../../assets/images/background-square.svg") no-repeat center center;
+    background-size: cover;
+    position: absolute;
+    @include size(135px, 137px);
+
+    &.background-square-1 {
+      left: -135px;
+      top: -10px;
+    }
+
+    &.background-square-2 {
+      right: -25px;
+      top: 11px;
+    }
+
+    @media (max-width: $tablet) {
+      display: none;
+    }
+  }
+
+  .request-state {
+    display: block;
+    margin-top: -100px;
+  }
+}
+
+.skeleton-container {
+  padding: 32px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+
+  @media (max-width: $tablet) {
+    justify-content: flex-start;
+  }
+
+  .skeleton {
+    display: grid;
+    gap: 16px;
+    width: 100%;
+
+    .skeleton-image {
+      display: none;
+
+      @media (max-width: $tablet) {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+
+  .space-between {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    gap: 16px;
+  }
+
+  .skeleton-image {
+    @media (max-width: $tablet) {
+      display: none;
+    }
+  }
+}

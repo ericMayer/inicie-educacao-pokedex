@@ -4,7 +4,11 @@ import { RouterModule, Routes, provideRouter, withComponentInputBinding } from '
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
+    loadChildren: () => import('./pages/home/home.module').then(module => module.HomeModule)
+  },
+  {
+    path: 'pokemon/:pokemonName',
+    loadComponent: () => import('./pages/pokemon-detail/pokemon-detail.component').then(component => component.PokemonDetailComponent)
   },
   {
     path: '**',
