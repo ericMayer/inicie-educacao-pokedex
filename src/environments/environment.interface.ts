@@ -1,1 +1,3 @@
-export interface Environment { }
+export interface Environment {
+  pokeApi: string;
+}

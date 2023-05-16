@@ -1,0 +1,25 @@
+<div class="card-pokemon" *ngIf="pokemon?.id; else showSkeletonLoading" (click)="openPokemonDetail()">
+  <div class="pokemon-info">
+    <p class="pokemon-name subtitle-font">{{ pokemon?.name }}</p>
+
+    <p class="small-font">#{{ pokemon?.id }}</p>
+  </div>
+
+  <img class="pokemon-image" [src]="pokemon?.image" [alt]="'Image do ' + pokemon?.name">
+
+  <div class="pokemon-details">
+    <div class="detail">
+      <p class="small-font detail-name">Altura:</p>
+      <p class="small-font detail-info">{{ pokemon?.height | formatPokemonSheap : 'height'}}</p>
+    </div>
+
+    <div class="detail">
+      <p class="small-font detail-name">Peso:</p>
+      <p class="small-font detail-info">{{ pokemon?.weight | formatPokemonSheap : 'weight' }}</p>
+    </div>
+  </div>
+</div>
+
+<ng-template #showSkeletonLoading>
+  <app-skeleton-loading width="100%" height="100%" borderRadius="2px"></app-skeleton-loading>
+</ng-template>
