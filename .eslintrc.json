@@ -22,7 +22,6 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "app",
             "style": "camelCase"
           }
         ],
@@ -40,6 +39,7 @@
             "allow": ["constructors"]
           }
         ],
+        "no-unsafe-optional-chaining": "off",
         "no-var": "error",
         "no-console": "warn",
         "no-debugger": "error",

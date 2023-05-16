@@ -4,6 +4,22 @@ Projeto desenvolvido para o teste de **Front-end da [Inicie](https://inicie.digi
 
 Projeto foi desenvolvido com versão **16 do Angular**, seguindo boas práticas do [Angular coding style guide](https://angular.io/guide/styleguide) e da comunidade, foi utilizado [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#specification) para os commits do projeto, também foi utilizado **programação reativa** [RXJS](https://rxjs.dev/) e está configurado o [Eslint](https://eslint.org/) para validação do código e o [Prettier](https://prettier.io/) para formatação.
 
+## Features extras
+
+**Lottie animations** adicionado animações do [Lottie](https://lottiefiles.com/) usando o [lottie-web](https://www.npmjs.com/package/lottie-web) para listagem vazia e erros.
+
+**Skeleton loading** adicionado **skeleton** na listagem e no detalhe dos Pokémons.
+
+**Paginação** feito paginação no front para ser possível fazer busca do Pokémon por nome, foi utilizado o [swiperjs](https://swiperjs.com/get-started) no desktop e no mobile o [infinite scroll](https://www.npmjs.com/package/ngx-infinite-scroll) para fazer a paginação.
+
+**Sistema de cache** foi feito um sistema de cache em memória para as informações dos Pokémons no **Interceptor**.
+
+**Conversão de peso e altura** criado **pipe** que para conversão de peso de **hectograms para gramas e kg** e conversão de altura de **decimetres para cm e m**.
+
+**Diretiva de image** foi criado uma diretiva para carregar uma imagem padrão em caso de falha para carregar a imagem do Pokémon.
+
+**Botão voltar** adicionado botão voltar na tela de detalhe do Pokémon para facilitar a navegação do usuário.
+
 ## Pré-requisitos
 
 Para conseguir instalar as dependências do projeto e rodar ele é necessário ter instalado na máquina a versão do **Node.js ^16.14.0 || ^18.10.0**, para maiores sobre como fazer a instalação, por favor acessar o [Node.js](https://nodejs.org/en).
