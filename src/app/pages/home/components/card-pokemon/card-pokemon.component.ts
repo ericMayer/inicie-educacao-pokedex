@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Pokemon } from '@shared/interfaces/pokemon.interface';
 
@@ -9,4 +10,10 @@ import { Pokemon } from '@shared/interfaces/pokemon.interface';
 })
 export class CardPokemonComponent {
   @Input({ required: true }) public pokemon: Pokemon;
+
+  constructor(private router: Router) { }
+
+  public openPokemonDetail(): void {
+    this.router.navigateByUrl(`pokemon/${this.pokemon?.name}`);
+  }
 }

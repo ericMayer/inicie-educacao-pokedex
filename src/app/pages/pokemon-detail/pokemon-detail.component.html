@@ -1,0 +1,118 @@
+<main class="pokemon" [class.page-error]="showRequestState()" *ngIf="showPokemon(); else showSkeletonLoading">
+
+  <div class="background-square background-square-2"></div>
+
+  <div class="pokemon-info">
+
+    <img class="logo" src="assets/images/logo-inicie-educacao.svg" alt="Logo da Inicie Educação">
+
+    <ng-container *ngIf="!showRequestState()">
+
+      <div class="back">
+        <button routerLink="" class="back-button text-font">
+          <span class="material-symbols-outlined">
+            arrow_back_ios
+          </span>
+
+          Voltar
+        </button>
+
+        <h1 class="pokemon-name">{{ pokemon?.name }}</h1>
+      </div>
+
+      <div class="pokemon-category">
+        <div class="code">
+          <p class="subtitle-font">Cod: </p>
+
+          <p class="subtitle-font">#{{ pokemon?.id }}</p>
+        </div>
+
+        <div class="category">
+          <p class="subtitle-font">Tipo:</p>
+
+          <div class="type" *ngFor="let type of pokemon?.types" [style.backgroundColor]="getBackgroundColorType(type)">
+            <p class="subtitle-font">{{ type }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pokemon-image" *ngIf="!showRequestState()">
+        <img class="image" [src]="pokemon?.image" [alt]="'Image do ' + pokemon?.name">
+      </div>
+
+      <div class="description">
+        <h2 class="subtitle-font">Descriçāo</h2>
+
+        <p class="small-font">{{ pokemon?.description }}</p>
+      </div>
+
+      <div class="pokemon-stat">
+        <p class="subtitle-font">Informações</p>
+
+        <div class="sheap">
+          <div class="sheap-detail">
+            <p class="text-font">Altura:</p>
+            <p class="text-font">{{ pokemon?.height | formatPokemonSheap : 'height'}}</p>
+          </div>
+
+          <div class="sheap-detail">
+            <p class="text-font">Peso:</p>
+            <p class="text-font">{{ pokemon?.weight | formatPokemonSheap : 'weight' }}</p>
+          </div>
+        </div>
+
+        <div class="chart">
+          <div class="chart-bar" *ngFor="let stat of pokemon?.stats">
+            <p class="small-font">{{ stat?.statName }}</p>
+
+            <div class="bar">
+              <div class="bar-color" [style.backgroundColor]="pokemonChartStatColors?.[stat?.statName]"
+                [style.width]="stat?.statPercentage + '%'"></div>
+            </div>
+          </div>
+
+          <div class="background-square background-square-1"></div>
+        </div>
+
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="pokemon-image" *ngIf="!showRequestState()">
+    <img class="image" [src]="pokemon?.image" [alt]="'Image do ' + pokemon?.name">
+  </div>
+
+  <app-request-state class="request-state" *ngIf="showRequestState()" [requestState]="requestState"></app-request-state>
+</main>
+
+<ng-template #showSkeletonLoading>
+  <div class="skeleton-container">
+    <div class="skeleton">
+      <app-skeleton-loading width="110px" height="100px" borderRadius="8px"></app-skeleton-loading>
+
+      <app-skeleton-loading width="200px" height="48px"></app-skeleton-loading>
+
+      <div class="space-between">
+        <app-skeleton-loading *ngFor="let skeleton of [0, 1]" width="100%" height="30px"></app-skeleton-loading>
+      </div>
+
+      <app-skeleton-loading class="skeleton-image" width="200px" height="200px" borderRadius="50%"
+        marginLeft="30px"></app-skeleton-loading>
+
+      <app-skeleton-loading width="100px" height="30px"></app-skeleton-loading>
+
+      <app-skeleton-loading width="100%" h30pxeight="60px"></app-skeleton-loading>
+
+      <app-skeleton-loading width="130px" height=""></app-skeleton-loading>
+
+      <app-skeleton-loading *ngFor="let skeleton of [0, 1]" width="100%" height="25px" marginLeft="10px">
+      </app-skeleton-loading>
+
+      <app-skeleton-loading width="300px" height="100px" marginTop="10px"></app-skeleton-loading>
+    </div>
+
+    <app-skeleton-loading class="skeleton-image" width="300px" height="300px" borderRadius="50%" marginLeft="100px"
+      marginRight="70px" marginTop="86px"></app-skeleton-loading>
+  </div>
+
+</ng-template>

@@ -15,3 +15,11 @@ $light-color: var(--light-color);
   width: $width;
   height: $height;
 }
+
+@mixin ellipsis($line-clamp) {
+  display: -webkit-box;
+  -webkit-line-clamp: $line-clamp;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

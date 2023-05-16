@@ -43,8 +43,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   public search: FormControl<string> = new FormControl('');
   private phoneWidth: number = 576;
   public isMobile: boolean = window.innerWidth <= this.phoneWidth;
-
+  private itemsPerPage: number = this.pokemonService.itemsPerPage;
   private destroyRef: DestroyRef = inject(DestroyRef);
+  private pokemonsListNameProperty: string[] = ['pokemonsList', 'pokemonsListOne', 'pokemonsListTwo', 'pokemons'];
 
   constructor(
     private cd: ChangeDetectorRef,
@@ -72,9 +73,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   private pushAllPokemonsList(pokemonsList: PokemonList): void {
-    const propertyNames: string[] = ['pokemonsList', 'pokemonsListOne', 'pokemonsListTwo', 'pokemons'];
-
-    propertyNames.forEach((property: string) =>
+    this.pokemonsListNameProperty.forEach((property: string) =>
       this.pushPokemons(pokemonsList?.[property], this.pokemonsList?.[property])
     );
 
@@ -98,6 +97,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   private changePokemonsList(pokemons: Pokemon[]): void {
+    this.pokemonsList.pokemonsList = [];
     this.pokemonsList.pokemonsListOne = [];
     this.pokemonsList.pokemonsListTwo = [];
 
@@ -123,7 +123,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       .subscribe((pokemonName: string) => {
         if (!pokemonName) {
           this.filteredPokemonsList = [...this.pokemonsList?.pokemons];
-          const firstTenPokemons: Pokemon[] = this.pokemonsList.pokemons.slice(0, 10);
+          const firstTenPokemons: Pokemon[] = this.pokemonsList.pokemons.slice(0, this.itemsPerPage);
           this.changePokemonsList(firstTenPokemons);
         }
       });
@@ -137,9 +137,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   private updateAllListsPokemonInfo(pokemon: Pokemon): void {
-    const propertyNames: string[] = ['pokemonsList', 'pokemonsListOne', 'pokemonsListTwo', 'pokemons'];
-
-    propertyNames.forEach((property: string) =>
+    this.pokemonsListNameProperty.forEach((property: string) =>
       this.updatePokemonInfo(this.pokemonsList?.[property], pokemon)
     );
 
@@ -157,10 +155,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   public pushPokemonsLists(pokemons: Pokemon[]): void {
-    const itemsPerPage: number = this.pokemonService.itemsPerPage;
-
-    this.pushPokemons(pokemons.slice(0, itemsPerPage / 2), this.pokemonsList.pokemonsListOne);
-    this.pushPokemons(pokemons.slice(itemsPerPage / 2, itemsPerPage), this.pokemonsList.pokemonsListTwo);
+    this.pushPokemons(pokemons.slice(0, this.itemsPerPage / 2), this.pokemonsList.pokemonsListOne);
+    this.pushPokemons(pokemons.slice(this.itemsPerPage / 2, this.itemsPerPage), this.pokemonsList.pokemonsListTwo);
     this.pushPokemons(pokemons, this.pokemonsList.pokemonsList);
   }
 
@@ -172,14 +168,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   public loadMorePokemons(): void {
     if (!this.search?.value) {
-      const itemsPerPage: number = this.pokemonService.itemsPerPage;
-      const actualIndex: number = this.pokemonsList?.actualIndex + itemsPerPage;
-      const endIndex: number = actualIndex + itemsPerPage;
+      const actualIndex: number = this.pokemonsList?.actualIndex + this.itemsPerPage;
+      const endIndex: number = actualIndex + this.itemsPerPage;
       const pokemons: Pokemon[] = this.pokemonsList?.pokemons?.slice(actualIndex, endIndex);
 
       this.pushPokemonsLists(pokemons);
 
-      this.pokemonsList.actualIndex += itemsPerPage;
+      this.pokemonsList.actualIndex += this.itemsPerPage;
       this.getPokemonsDetails([...this.pokemonsList.pokemonsListOne, ...this.pokemonsList.pokemonsListTwo]);
 
       this.updateSwiper();
@@ -218,7 +213,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     return this.requestState === RequestState.Error || this.requestState === RequestState.Empty;
   }
 
-
   private resizeEvent(): void {
     fromEvent(window, 'resize')
       .pipe(takeUntilDestroyed(this.destroyRef))
@@ -235,4 +229,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     if (this.isMobile)
       this.loadMorePokemons();
   }
+
+  public hideSwiper = (): boolean =>
+    this.isMobile || !this.filteredPokemonsList?.length;
 }

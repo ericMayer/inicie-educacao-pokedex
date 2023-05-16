@@ -51,7 +51,7 @@
   <div class="slides">
 
     <swiper-container class="cards-pokemons" #swiperContainerListOne slides-per-view="auto"
-      [class.display-none]="isMobile">
+      [class.display-none]="hideSwiper()">
 
       <ng-container *ngTemplateOutlet="cardPokemon; context: { pokemonsList: pokemonsList?.pokemonsListOne }">
       </ng-container>
@@ -59,7 +59,7 @@
     </swiper-container>
 
     <swiper-container class="cards-pokemons" #swiperContainerListTwo slides-per-view="auto"
-      [class.display-none]="isMobile">
+      [class.display-none]="hideSwiper()">
 
       <ng-container *ngTemplateOutlet="cardPokemon; context: { pokemonsList: pokemonsList?.pokemonsListTwo }">
       </ng-container>
